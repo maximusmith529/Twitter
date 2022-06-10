@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,8 +19,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.ComposeActivity;
 import com.codepath.apps.restclienttemplate.DetailedView;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TimelineActivity;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -74,6 +77,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ConstraintLayout clTweet;
         ImageButton ibFavorite;
         TextView tvFavoriteCount;
+        ImageButton ibReply;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -85,6 +89,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             clTweet = itemView.findViewById(R.id.tweet);
             ibFavorite = itemView.findViewById(R.id.ibFavorite);
             tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
+            ibReply = itemView.findViewById(R.id.ibReply);
         }
 
         // Clean all elements of the recycler
@@ -115,6 +120,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     context.startActivity(intent);
                 }
             });
+
             ibFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -165,6 +171,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         tweet.favoriteCount--;
                         tvFavoriteCount.setText(String.valueOf(tweet.favoriteCount));
                     }
+                }
+            });
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //egg!!! OMG WOWOW
+                    //pop up a compose screen
+                    Intent i = new Intent(context, ComposeActivity.class);
+                    i.putExtra("should_reply_to_tweet", true);
+//                    i.putExtra("id_of_tweet_to_reply_to", tweet.id);
+//
+//                    i.putExtra("screenname_of_tweet_to_reply_to", tweet.user.screenName);
+                    i.putExtra("tweet", Parcels.wrap(tweet));
+                    ((Activity) context).startActivityForResult(i, TimelineActivity.REQUEST_CODE);
+
+                    // it is gonna be a brand new tweet, but it'll have an extra attribute
+                        //extra attribute: "in_reply_to_status_id"
                 }
             });
         }

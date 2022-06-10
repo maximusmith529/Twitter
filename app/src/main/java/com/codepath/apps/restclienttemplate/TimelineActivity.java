@@ -31,7 +31,7 @@ import okhttp3.Headers;
 
 public class TimelineActivity extends AppCompatActivity {
     private static final String TAG = "TimelineActivity";
-    private final int REQUEST_CODE = 20;
+    public static final int REQUEST_CODE = 20;
 
     private SwipeRefreshLayout swipeContainer;
     TwitterClient client;
