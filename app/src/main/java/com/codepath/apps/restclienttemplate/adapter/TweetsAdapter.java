@@ -7,10 +7,12 @@ import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -63,7 +65,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         ImageView ivMediaImage;
         TextView tvTimeStamp;
-
+        ConstraintLayout clTweet;
+        ImageButton ibFavorite;
+        TextView tvFavoriteCount;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
@@ -71,6 +75,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             ivMediaImage = itemView.findViewById(R.id.ivMediaImage);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            clTweet = itemView.findViewById(R.id.tweet);
+            ibFavorite = itemView.findViewById(R.id.ibFavorite);
+            tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
         }
 
         // Clean all elements of the recycler
@@ -81,6 +88,33 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTimeStamp.setText(tweet.getFormattedTimestamp());
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
             Glide.with(context).load(tweet.mediaURL).into(ivMediaImage);
+            tvBody.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                     //create intent for the new activity
+                    Intent intent = new Intent(context, DetailedView.class);
+                    // serialize the movie using parceler, use its short name as a key
+                    intent.putExtra(DetailedView.EXTRA_CONTACT, Parcels.wrap(tweet));
+                    // show the activity
+                    context.startActivity(intent);
+                }
+            });
+            ibFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //if not favorited then >
+                        // call the API to favorite the tweet
+
+                        //change the drawable to star on (btn_star_big_on)
+                        //change tvFavoriteCount ++
+
+                    //else unfavorite
+                        //tell tiwtter I dont want to favorite this
+                        //change drawable back to (btn_star_big_off)
+                        //decrement tvFavoriteCount --
+
+                }
+            });
         }
     }
     public void clear() {
