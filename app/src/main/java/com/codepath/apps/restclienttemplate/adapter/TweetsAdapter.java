@@ -1,7 +1,9 @@
 package com.codepath.apps.restclienttemplate.adapter;
 
+
 import android.content.Context;
-import android.text.Layout;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.DetailedView;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -87,4 +93,20 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         tweets.addAll(list);
         notifyDataSetChanged();
     }
+
+
+//    public void onClick(View v) {
+//        // gets item position
+//        int position = getAdapterPosition();
+//        if(tweet!=null){
+//            // create intent for the new activity
+//            Intent intent = new Intent(context, DetailedView.class);
+//            // serialize the movie using parceler, use its short name as a key
+//            intent.putExtra(DetailedView.EXTRA_CONTACT, Parcels.wrap(tweet));
+//            // show the activity
+//            context.startActivity(intent);
+//        }
+//      }
+
+
 }

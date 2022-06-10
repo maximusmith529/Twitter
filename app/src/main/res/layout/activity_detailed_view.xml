@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".DetailedView">
 
     <ImageView
-        android:id="@+id/ivProfileImage"
+        android:id="@+id/ivProfileImage2"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,46 +15,45 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvTimeStamp"
+        android:id="@+id/tvTimeStamp2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tvScreenName"
+        app:layout_constraintStart_toEndOf="@+id/tvScreenName2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintStart_toEndOf="@+id/tvScreenName" />
 
     <TextView
-        android:id="@+id/tvScreenName"
+        android:id="@+id/tvScreenName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
-        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="BaxibusBith529" />
 
     <TextView
-        android:id="@+id/tvBody"
+        android:id="@+id/tvBody2"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:autoLink="all"
         android:linksClickable="true"
-        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvScreenName"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage2"
+        app:layout_constraintTop_toBottomOf="@+id/tvScreenName2"
         tools:text="POV: First Tweet!" />
 
     <ImageView
-        android:id="@+id/ivMediaImage"
+        android:id="@+id/ivMediaImage2"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBody"
+        app:layout_constraintTop_toBottomOf="@+id/tvBody2"
         tools:srcCompat="@tools:sample/avatars" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
