@@ -67,6 +67,15 @@
         app:layout_constraintTop_toBottomOf="@id/ivMediaImage"
         app:layout_constraintLeft_toRightOf="@id/ivProfileImage"
         />
+    <ImageButton
+        android:id="@+id/ibReply"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/tvFavoriteCount"
+        app:layout_constraintTop_toBottomOf="@+id/ivMediaImage"
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
     <TextView
         android:id="@+id/tvFavoriteCount"
