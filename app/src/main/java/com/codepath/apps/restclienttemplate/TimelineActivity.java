@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.adapter.TweetsAdapter;
@@ -77,6 +78,11 @@ public class TimelineActivity extends AppCompatActivity {
         // Send the network request to fetch the updated data
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
+        // on some click or some loading we need to wait for...
+        ProgressBar pb = (ProgressBar) findViewById(R.id.pbLoading);
+        pb.setVisibility(ProgressBar.VISIBLE);
+        // run a background job and once complete
+
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 try {
@@ -96,6 +102,7 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("DEBUG", "Fetch timeline error: " + e.toString());
             }
         });
+        pb.setVisibility(ProgressBar.INVISIBLE);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,6 +138,10 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateHomeTimeline(){
+        // on some click or some loading we need to wait for...
+        ProgressBar pb = (ProgressBar) findViewById(R.id.pbLoading);
+        pb.setVisibility(ProgressBar.VISIBLE);
+
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -151,6 +162,8 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure: " + statusCode +"Response: "+ response,throwable);
             }
         });
+        // run a background job and once complete
+        pb.setVisibility(ProgressBar.INVISIBLE);
     }
 
     public void logOut(View view) {
